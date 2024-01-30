@@ -1,0 +1,42 @@
+
+.details-table {
+    margin-top: 20px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    padding: 10px;
+  }
+  
+  thead {
+    background-color: #f2f2f2;
+  }
+  
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  th {
+    font-weight: bold;
+  }
+  .btn-left{
+    display: flex;
+    align-items: end;
+    justify-content: end;
+    padding-right: 20px;
+    font-weight: bold;
+  }
+
+  @media(max-width: 564px){
+    .table-section{
+      overflow-x: scroll;
+    }
+    .btn-left{
+      padding-right: 0;
+      font-weight: lighter;
+    }
+  }
