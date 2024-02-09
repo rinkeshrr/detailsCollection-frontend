@@ -49,41 +49,39 @@ const Login = ({setAuthenticated}) => {
       }
   };
 
-  const handleRegisterClick = () =>{
-    navigate("/")
-  }
-
   const closePopup = () => {
     setPopup(null);
   };
 
   return (
     <div className='center'>
-  <form className="register-form" onSubmit={handleLogin}>
-    <div className="form-row">
-      <div className="form-group">
-        <label htmlFor="employeeId">Employee ID:</label>
-        <input type="text" id="employeeId" name="employeeId" value={formData.employeeId} onChange={handleChange} />
-      </div>
-    </div>
-    <div className="form-row">
-      <div className="form-group">
-        <label htmlFor="password">Password:</label>
-        <input type="password" id="password" name="password" value={formData.password} onChange={handleChange} />
-      </div>
-    </div>
-
-    <button type="submit">Go To details</button>
-    <div className="already-registered" style={{padding: "10px"}}>
-          <span >Back To Regsiter? <span style={{color : "blue", cursor: "pointer"}} onClick={handleRegisterClick}>
-            Register
-          </span></span>
-          
+      <form className="register-form" onSubmit={handleLogin}>
+      {/* <h1 className='text-center white'>Employee Login</h1> */}
+      <img className="login-icon" src="/images/logo-1024x285.webp" alt="" />
+      <div className="form-row">
+        <div className="form-group">
+          <label className="emp-id-class" htmlFor="employeeId">Employee ID:</label>
+          <input type="text" id="employeeId" name="employeeId" value={formData.employeeId} onChange={handleChange} />
         </div>
-  </form>
+      </div>
+      <div className="form-row">
+        <div className="form-group">
+          <label htmlFor="password">Password:</label>
+          <input type="password" id="password" name="password" value={formData.password} onChange={handleChange} />
+        </div>
+      </div>
 
-  {popup && <Popup type={popup.type} message={popup.message} onClose={closePopup} />}
-</div>
+      <button className="login-btn" type="submit">Login</button>
+      {/* <div className="already-registered" style={{padding: "10px"}}>
+            <span >Don't have an account ? <span style={{color : "blue", cursor: "pointer"}} onClick={handleRegisterClick}>
+              Register Here
+            </span></span>
+            
+          </div> */}
+    </form>
+
+    {popup && <Popup type={popup.type} message={popup.message} onClose={closePopup} />}
+  </div>
 
   );
 };

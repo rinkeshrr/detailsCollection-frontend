@@ -7,13 +7,14 @@ import baseUrl from '../config';
 
 const Update = () => {
 
-    const { id } = useParams();
+    const { id, objId } = useParams();
     const [details, setDetails] = useState(null);
     const navigate = useNavigate()
     const [formData, setFormData] = useState({
-        name: '',
-        employeeId: '',
-        laptopModel: '',
+        deviceName: '',
+        employeeId: id,
+        deviceModel: '',
+        operatingSystem: '',
         macAddress: '',
       });
       const [popup, setPopup] = useState(null);
@@ -21,7 +22,8 @@ const Update = () => {
     useEffect(() => {
       const fetchDetails = async () => {
         try {
-          const response = await axios.get(`${baseUrl}/api/details/${id}`);
+          const response = await axios.get(`${baseUrl}/api/device-detail/${objId}`);
+          console.log(response.data)
           setDetails(response.data);
           setFormData(response.data)
         } catch (error) {
@@ -47,8 +49,8 @@ const Update = () => {
     }
 
     try {
-      const res = await axios.post(`${baseUrl}/api/update/${id}`, formData); 
-    navigate(`/status/${formData.employeeId}`);
+      const res = await axios.post(`${baseUrl}/api/device-update/${objId}`, formData); 
+      navigate(`/status/${id}`);
     } catch (error) {
       console.error('Error registering device:', error);
       if (error.response && error.response.data) {
@@ -75,23 +77,23 @@ const Update = () => {
             details && 
             <form className="register-form" onSubmit={handleSubmit}>
             <div className="form-row">
-              <div className="form-group">
-                <label htmlFor="name">Name:</label>
-                <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} />
+            <div className="form-group">
+                <label htmlFor="deviceName">Device Name:</label>
+                <input type="text" id="deviceName" name="deviceName" value={formData.deviceName} onChange={handleChange} />
               </div>
-        
+
               <div className="form-group">
-                <label htmlFor="employeeId">Employee ID:</label>
-                <input type="text" id="employeeId" name="employeeId" value={formData.employeeId} onChange={handleChange} />
+                <label htmlFor="deviceModel">Device Model:</label>
+                <input type="text" id="deviceModel" name="deviceModel" value={formData.deviceModel} onChange={handleChange} />
               </div>
             </div>
-        
+
             <div className="form-row">
               <div className="form-group">
-                <label htmlFor="laptopModel">Laptop Model:</label>
-                <input type="text" id="laptopModel" name="laptopModel" value={formData.laptopModel} onChange={handleChange} />
+                <label htmlFor="operatingSystem">Operating System:</label>
+                <input type="text" id="operatingSystem" name="operatingSystem" value={formData.operatingSystem} onChange={handleChange} />
               </div>
-        
+
               <div className="form-group">
                 <label htmlFor="macAddress">Mac Address:</label>
                 <input type="text" id="macAddress" name="macAddress" value={formData.macAddress} onChange={handleChange} />
