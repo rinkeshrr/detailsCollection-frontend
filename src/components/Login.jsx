@@ -1,11 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../styles/styles.css'; // Import the CSS file
 import Popup from './Popup';
 import { useNavigate} from 'react-router-dom';
 import baseUrl from '../config';
+// import jwt from 'jsonwebtoken';
+// import Cookies from 'js-cookie';
+// import Cookies from 'universal-cookie';
+import { jwtDecode } from 'jwt-decode';
 
 const Login = ({setAuthenticated}) => {
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const token = urlParams.get('token');
+
+  // useEffect(async() => {
+  //   const decodedToken = jwtDecode(token);
+  //   console.log('decodedToken',decodedToken)
+  //   const password = decodedToken.password;
+  //   const employeeId = decodedToken.employeeId;
+  //   // if(accessToken){
+  //   //   navigate("/status")
+  //   //   return
+  //   // }
+  //   try {
+  //     const response = await axios.post(`${baseUrl}/api/login`, { employeeId: employeeId , password: password});
+  
+  //     if (response.data === 'User logged in successfully') {
+  //       // User found, navigate to the status page
+  //       setPopup({ type: 'success', message: response.data });
+  //       setFormData({ employeeId: '' });
+  //       setAuthenticated(true)
+  //       navigate(`/status/${formData.employeeId}`);
+  //     } else {
+  //       // User not found
+  //       setPopup({ type: 'error', message: 'User not found. Please check the Employee ID and Password' });
+  //     }
+  //   } catch (error) {
+  //     console.error('Error logging in:', error);
+  //     setPopup({ type: 'error', message: 'Something went wrong. Please try again.' });
+  //   }
+  // });
 
   const navigate = useNavigate()
   const [formData, setFormData] = useState({
